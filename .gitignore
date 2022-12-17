@@ -1,3 +1,10 @@
 .venv/
 dist/
 vocabulary
+*.egg-info
+__pycache__
+*.pyc
+.pytest_cache/
+.vim
+.idea/
+.coverage
