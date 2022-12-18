@@ -1,23 +1,21 @@
+.PHONY: install test run
+
 install:
 	poetry install
 
-build:
-	poetry build
-	
-run:
-	poetry run src\scripts\draw.py
-
 test:
-	poetry run pytest
+	poetry run pytest tests/test.py
+
+run:
+	poetry run python src/app.py
 
 lint:
-	poetry run flake8
+	poetry run flake8 src
 
-format:
-	poetry run black .
+amend-and-push:
+	git add .
+	git commit --amend --no-edit
+	git push --force
 
-clean:
-	rm -rf .ven
-
-package-install:
-	python3 -m pip install --user dist/*.whl --force-reinstall
+say-hello:
+	@echo "Hello, World!"

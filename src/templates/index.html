@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Lotto Simulator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container py-5">
+      <h1 class="h1 mb-5">Welcome to the lotto simulator!</h1>
+      <h3 class="h3 mb-4">Enter the lottery format, number range, and the quantity of tickets</h3>
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="row">
+          <div class="form-group col-md-2">
+            {{ form.format(class="form-control") }}
+          </div>
+          <span class="text-center">from</span>
+          <div class="form-group col-md-2">
+            {{ form.from_num(class="form-control") }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-2">
+            <label for="tickets">Number of tickets</label>
+            {{ form.tickets(class="form-control") }}
+          </div>
+        </div>
+        {{ form.submit(class="btn btn-outline-dark") }}
+      </form>
+      {% if draw %}
+        <div class="mt-5">
+            <h2>Draw</h2>
+              {% for num in draw %}
+                <span class="badge badge-pill badge-success h1">{{ num }}</span>
+              {% endfor %}
+        </div>
+      {% endif %}
+      {% if tickets %}
+      <div class="mt-5">
+        <h2>Generated Tickets</h2>
+          {% for ticket in tickets %}
+            {% for num in ticket %}
+              <span class="badge badge-pill {% if num in draw %}badge-success{% else %}badge-secondary{% endif %} h1">{{ num }}</span>
+            {% endfor %}<br>
+          {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
